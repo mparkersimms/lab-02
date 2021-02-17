@@ -11,15 +11,15 @@ Finish time: 5:07 pm PST
 Actual time needed to complete: 1 hr 22 mins
 
 
-Number and name of feature: ________________________________
+Number and name of feature: Filter Images
 
-Estimate of time needed to complete: _____
+Estimate of time needed to complete: 45 mins
 
-Start time: _____
+Start time: 5:19 pm PST
 
-Finish time: _____
+Finish time: 7:25 pm PST
 
-Actual time needed to complete: _____
+Actual time needed to complete: 2 hr 6 mins
 
 
 
