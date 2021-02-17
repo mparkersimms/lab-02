@@ -25,18 +25,38 @@ HornsPicture.prototype.renderImages = function (){
 };
 
 
+HornsPicture.prototype.renderDropdown = function (){
+    const potato = [];
+    HornsPicture.allHornsPics.forEach(value => {
+        if (potato.includes(`${this.keyword}`))
+    });
+    const $optionCopy = $('option:first-child').clone();
+    
+    $optionCopy.text(this.keyword);
+    if ($('select:contains(${this.keyword}))){
+        console.log('test');
+    } else {
+        
+        $('select').append($optionCopy);
+    }
+};
+
+
+
 
 $.ajax('../data/page-1.json').then(callbackFunction);
 
 function callbackFunction(jsonArray) {
-
+    
     console.log(jsonArray);
-
+    
     jsonArray.forEach(function(hornsObject){
         new HornsPicture(hornsObject.description, hornsObject.horns, hornsObject.image_url,hornsObject.keyword,hornsObject.title);
     });
-
+    
     HornsPicture.allHornsPics.forEach(value => value.renderImages());
+
+    HornsPicture.allHornsPics.forEach(value => value.renderDropdown());
 }
 
 console.log($('h1').text());
