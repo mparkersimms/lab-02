@@ -71,4 +71,4 @@ $('select').on('change', function(event){
 
 console.log($('h1').text());
 
-console.log($.ajax('../data/page-1.json'));
+console.log($.ajax('data/page-1.json'));
