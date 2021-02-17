@@ -46,7 +46,7 @@ HornsPicture.prototype.renderDropdown = function () {
 
 
 
-$.ajax('../data/page-1.json').then(callbackFunction);
+$.ajax('data/page-1.json').then(callbackFunction);
 
 function callbackFunction(jsonArray) {
 
