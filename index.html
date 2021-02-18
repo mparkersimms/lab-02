@@ -15,19 +15,30 @@
       <select>
         <option value="default">Filter by Keyword</option>
       </select>
-      <button>Page 1</button>
-      <button>Page 2</button>
+      <button id = "page-1">Page 1</button>
+      <button id = "page-2">Page 2</button>
     </header>
     <main>
-      <div id="photo-template">
-        <h2></h2>
-        <img src="" alt="">
-        <p></p>
-      </div>
+      <script id="template" type="x-tmpl-mustache">
+        
+        <div id="{{photo-template}}">
+          <h2>{{}}</h2>
+          <img src="{{}}" alt="">
+          <h3>{{}}</h3>
+          <p>{{}}</p>
+        </div>  
+      </script>
+      <div id="{{photo-template}}">
+        <h2>{{}}</h2>
+        <img src="{{}}" alt="">
+        <h3>{{}}</h3>
+        <p>{{}}</p>
+      </div>  
     </main>
     <footer>
       &copy; 2018 Code Fellows
     </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.1.0/mustache.min.js" integrity="sha512-HYiNpwSxYuji84SQbCU5m9kHEsRqwWypXgJMBtbRSumlx1iBB6QaxgEBZHSHEGM+fKyCX/3Kb5V5jeVXm0OglQ==" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"
     integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
     crossorigin="anonymous"></script>

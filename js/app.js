@@ -1,13 +1,5 @@
-function buildPage (arr) {
-    arr.forEach (value) {
-        new HornsPicture (value.description, value.horns, value.url, value.keyword, value.title)
-        
-    };
-}
-
-
-
-
+const pageOneArray = [];
+const pageTwoArray = [];
 
 
 function HornsPicture(desc, horns, url, keyword, title) {
@@ -22,19 +14,20 @@ HornsPicture.allHornsPics = [];
 
 console.log(HornsPicture.allHornsPics);
 
-HornsPicture.prototype.renderImages = function () {
-
-    const $divCopy = $('div:first-child').clone();
-
-    $divCopy.find('h2').text(this.title);
-    $divCopy.find('img').attr('src', this.url);
-    $divCopy.find('p').text(this.description);
-    $divCopy.attr('id', this.title);
-    $divCopy.attr('class', this.keyword);
-
-    $('main').append($divCopy);
-
-};
+function renderImages() {    
+    console.log('test');
+    console.log(HornsPicture.allHornsPics);
+    HornsPicture.allHornsPics.forEach( value => {
+        console.log(value);
+        const $divCopy = $('div:first-child').clone();
+        $divCopy.find('h2').text(value.title);
+        $divCopy.find('img').attr('src', value.url);
+        $divCopy.find('p').text(value.description);
+        $divCopy.attr('id', value.title);
+        $divCopy.find('h3').text(value.keyword);
+        $('main').append($divCopy);
+    });
+}
 
 
 
@@ -43,31 +36,63 @@ function renderDropdown() {
     // $('select').append('<option>filterByKeyword</option>');
     console.log(HornsPicture.allHornsPics);
     HornsPicture.allHornsPics.forEach(value => {
-        console.log('test');
+        console.log('test3');
         if ($(`select:contains(${value.keyword})`).length === 0) {
             console.log($(`select:contains(${value.keyword})`).length);
-            $('select').append(`<option>${value.keyword}</option>`);
+            $('select').append(`<option value = "${value.keyword}">${value.keyword}</option>`);
         }
+        // $('option').attr('value',value.keyword);
     });
 }
-// $.ajax('data/page-1.json').then(callbackFunction);
-$.ajax('data/page-1.json').then(buildPage(jsonArray));
+
+function buildPage(arr) {
+    // $('main').empty();
+    console.log('test2');
+    arr.forEach(value => {
+        new HornsPicture (value.description, value.horns, value.image_url, value.keyword, value.title);
+    });
+    renderImages();
+    renderDropdown();
+}
+
+
+// buildPage(pageOneArray);
+// console.log(pageOneArray);
+
+$.ajax('data/page-1.json').then(callbackFunction);
 $.ajax('data/page-2.json').then(callbackFunction2);
 
 function callbackFunction(jsonArray) {
 
     console.log(jsonArray);
-
-    // jsonArray.forEach(function (hornsObject) {
+    jsonArray.forEach(value => pageOneArray.push(value));
+    // pageOneArray.forEach(function (hornsObject) {
     //     new HornsPicture(hornsObject.description, hornsObject.horns, hornsObject.image_url, hornsObject.keyword, hornsObject.title);
     // });
-    
-    HornsPicture.allHornsPics.forEach(value => value.renderImages());
-    // HornsPicture.allHornsPics.forEach(value => value.renderDropdown());
-    // renderDropdown();
-    renderDropdown();
+    console.log(HornsPicture.allHornsPics);
+    // buildPage(pageOneArray);
 }
-buildPage(jsonArray);
+
+function callbackFunction2(jsonArray) {
+    
+    console.log(jsonArray);
+    jsonArray.forEach(value => pageTwoArray.push(value));
+}
+
+$('#page-1').on('click', function(){
+    console.log('you clicked a button');
+    buildPage(pageOneArray);
+});
+$('#page-2').on('click', function(){
+    console.log('you clicked a button');
+    buildPage(pageTwoArray);
+});
+
+
+// HornsPicture.allHornsPics.forEach(value => value.renderDropdown());
+// renderDropdown();
+
+
 // function callbackFunction2(jsonArray2) {
 
 //     console.log(jsonArray2);
@@ -80,7 +105,7 @@ buildPage(jsonArray);
 //     // HornsPicture.allHornsPics.forEach(value => value.renderDropdown());
 //     // renderDropdown();
 //     renderDropdown();
-}
+// }
 
 $('select').on('change', function (event) {
     $('div').hide();
