@@ -25,48 +25,39 @@ HornsPicture.prototype.renderImages = function () {
 };
 
 
-HornsPicture.prototype.renderDropdown = function () {
-    const potato = [];
+function renderDropdown() {
+    // $('select').append('<option>filterByKeyword</option>');
+    console.log(HornsPicture.allHornsPics);
     HornsPicture.allHornsPics.forEach(value => {
-        if (!potato.includes(`${this.keyword}`)) {
-            potato.push(this.keyword);
+        console.log('test');
+        if ($(`select:contains(${value.keyword})`).length === 0) {
+            console.log($(`select:contains(${value.keyword})`).length);
+            $('select').append(`<option>${value.keyword}</option>`);
         }
     });
-    potato.forEach(value => {
-
-        const $optionCopy = $('option:first-child').clone();
-
-        $optionCopy.text(this.keyword)
-
-
-        $optionCopy.attr('value', this.keyword);
-        $('select').append($optionCopy);
-    });
-};
-
-
-
+}
 $.ajax('data/page-1.json').then(callbackFunction);
 
 function callbackFunction(jsonArray) {
-
+    
     console.log(jsonArray);
-
+    
     jsonArray.forEach(function (hornsObject) {
         new HornsPicture(hornsObject.description, hornsObject.horns, hornsObject.image_url, hornsObject.keyword, hornsObject.title);
     });
-
+    
     HornsPicture.allHornsPics.forEach(value => value.renderImages());
-    HornsPicture.allHornsPics.forEach(value => value.renderDropdown());
-    //renderDropdown();
+    // HornsPicture.allHornsPics.forEach(value => value.renderDropdown());
+    // renderDropdown();
+    renderDropdown();
 }
 
-$('select').on('change', function(event){
+$('select').on('change', function (event) {
     $('div').hide();
     console.log(event.target.value);
-    $('div:contains('+ event.target.value +')').show();
+    $('div:contains(' + event.target.value + ')').show();
     console.log((event.target.value).typeOf);
-})
+});
 
 
 console.log($('h1').text());
