@@ -40,25 +40,24 @@ function renderWithMustache () {
 
 
 function renderDropdown() {
-    // $('select').append('<option>filterByKeyword</option>');
-    
     console.log(HornsPicture.allHornsPics);
+    $('select').append(`<option value = "template">Filter by Keyword</option>`);
+    console.log($('option'));
+
     HornsPicture.allHornsPics.forEach(value => {
         console.log('test3');
         if ($(`select:contains(${value.keyword})`).length === 0) {
             console.log($(`select:contains(${value.keyword})`).length);
             $('select').append(`<option value = "${value.keyword}">${value.keyword}</option>`);
         }
-        // $('option').attr('value',value.keyword);
     });
 }
 
 function buildPage(arr) {
     // $('main').empty();
     console.log('test2');
-    console.log(pageOneArray);
     arr.forEach(value => {
-        new HornsPicture (value.description, value.horns, value.image_url, value.keyword, value.title);
+        new HornsPicture (value.description, value.horns, value.url, value.keyword, value.title);
     });
     renderWithMustache();
     // renderImages();
@@ -80,7 +79,7 @@ function callbackFunction(jsonArray) {
     //     new HornsPicture(hornsObject.description, hornsObject.horns, hornsObject.image_url, hornsObject.keyword, hornsObject.title);
     // });
     console.log(HornsPicture.allHornsPics);
-    // buildPage(pageOneArray);
+    buildPage(pageOneArray);
 }
 
 function callbackFunction2(jsonArray) {
@@ -90,10 +89,16 @@ function callbackFunction2(jsonArray) {
 }
 
 $('#page-1').on('click', function(){
+    $('div').remove();
+    HornsPicture.allHornsPics = [];
+    $('select').empty();
     console.log('you clicked a button');
     buildPage(pageOneArray);
 });
 $('#page-2').on('click', function(){
+    $('div').remove();
+    HornsPicture.allHornsPics = [];
+    $('select').empty();
     console.log('you clicked a button');
     buildPage(pageTwoArray);
 });
@@ -142,7 +147,9 @@ const sortFunction = (arr) => {
             return 0;
         }
     });
-    console.log(arr)
+    $('div').remove();
+    HornsPicture.allHornsPics = [];
+    console.log(arr);
     buildPage(arr);
     return arr;
 };
