@@ -14,26 +14,26 @@
       <h1>The Gallery of Horns</h1>
       <select>
         <option value="default">Filter by Keyword</option>
-      </select>
+      </select>      
+      <button id = "sort">Sort by Horns</button>
       <button id = "page-1">Page 1</button>
       <button id = "page-2">Page 2</button>
     </header>
     <main>
+      <div id="photo-template">
+        <h2></h2>
+        <img src="" alt="">
+        <h3></h3>
+        <p></p>
+      </div>
       <script id="template" type="x-tmpl-mustache">
-        
-        <div id="{{photo-template}}">
-          <h2>{{}}</h2>
-          <img src="{{}}" alt="">
-          <h3>{{}}</h3>
-          <p>{{}}</p>
-        </div>  
-      </script>
-      <div id="{{photo-template}}">
-        <h2>{{}}</h2>
-        <img src="{{}}" alt="">
-        <h3>{{}}</h3>
-        <p>{{}}</p>
-      </div>  
+      <div id="{{title}}">
+        <h2>{{title}}</h2>
+        <img src="{{url}}" alt="">
+        <h3>{{keyword}}</h3>
+        <p>{{description}}</p>
+      </div>
+    </script>   
     </main>
     <footer>
       &copy; 2018 Code Fellows

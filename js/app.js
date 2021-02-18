@@ -28,12 +28,20 @@ function renderImages() {
         $('main').append($divCopy);
     });
 }
+function renderWithMustache () {
+    HornsPicture.allHornsPics.forEach( value => {
+        const divHtmlElement = $('#template').html();
+        const outputFromMustache = Mustache.render(divHtmlElement, value);
 
+        $('main').append(outputFromMustache);
+    });
+}
 
 
 
 function renderDropdown() {
     // $('select').append('<option>filterByKeyword</option>');
+    
     console.log(HornsPicture.allHornsPics);
     HornsPicture.allHornsPics.forEach(value => {
         console.log('test3');
@@ -48,10 +56,12 @@ function renderDropdown() {
 function buildPage(arr) {
     // $('main').empty();
     console.log('test2');
+    console.log(pageOneArray);
     arr.forEach(value => {
         new HornsPicture (value.description, value.horns, value.image_url, value.keyword, value.title);
     });
-    renderImages();
+    renderWithMustache();
+    // renderImages();
     renderDropdown();
 }
 
@@ -89,6 +99,7 @@ $('#page-2').on('click', function(){
 });
 
 
+
 // HornsPicture.allHornsPics.forEach(value => value.renderDropdown());
 // renderDropdown();
 
@@ -118,3 +129,24 @@ $('select').on('change', function (event) {
 console.log($('h1').text());
 
 console.log($.ajax('data/page-1.json'));
+
+
+const sortFunction = (arr) => { 
+    console.log('tried to sort');
+    arr.sort((a,b) => {
+        if (a.horns > b.horns){
+            return 1;
+        }else if (a.horns < b.horns) {
+            return -1;
+        }else {
+            return 0;
+        }
+    });
+    console.log(arr)
+    buildPage(arr);
+    return arr;
+};
+$('#sort').on('click', function(){
+    console.log('you clicked sort');
+    sortFunction(HornsPicture.allHornsPics);
+});
