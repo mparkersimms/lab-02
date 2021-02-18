@@ -1,3 +1,15 @@
+function buildPage (arr) {
+    arr.forEach (value) {
+        new HornsPicture (value.description, value.horns, value.url, value.keyword, value.title)
+        
+    };
+}
+
+
+
+
+
+
 function HornsPicture(desc, horns, url, keyword, title) {
     this.description = desc;
     this.horns = horns;
@@ -25,6 +37,8 @@ HornsPicture.prototype.renderImages = function () {
 };
 
 
+
+
 function renderDropdown() {
     // $('select').append('<option>filterByKeyword</option>');
     console.log(HornsPicture.allHornsPics);
@@ -36,20 +50,36 @@ function renderDropdown() {
         }
     });
 }
-$.ajax('data/page-1.json').then(callbackFunction);
+// $.ajax('data/page-1.json').then(callbackFunction);
+$.ajax('data/page-1.json').then(buildPage(jsonArray));
+$.ajax('data/page-2.json').then(callbackFunction2);
 
 function callbackFunction(jsonArray) {
-    
+
     console.log(jsonArray);
-    
-    jsonArray.forEach(function (hornsObject) {
-        new HornsPicture(hornsObject.description, hornsObject.horns, hornsObject.image_url, hornsObject.keyword, hornsObject.title);
-    });
+
+    // jsonArray.forEach(function (hornsObject) {
+    //     new HornsPicture(hornsObject.description, hornsObject.horns, hornsObject.image_url, hornsObject.keyword, hornsObject.title);
+    // });
     
     HornsPicture.allHornsPics.forEach(value => value.renderImages());
     // HornsPicture.allHornsPics.forEach(value => value.renderDropdown());
     // renderDropdown();
     renderDropdown();
+}
+buildPage(jsonArray);
+// function callbackFunction2(jsonArray2) {
+
+//     console.log(jsonArray2);
+
+//     jsonArray2.forEach(function (hornsObject) {
+//         new HornsPicture(hornsObject.description, hornsObject.horns, hornsObject.image_url, hornsObject.keyword, hornsObject.title);
+//     });
+
+//     HornsPicture.allHornsPics.forEach(value => value.renderImages());
+//     // HornsPicture.allHornsPics.forEach(value => value.renderDropdown());
+//     // renderDropdown();
+//     renderDropdown();
 }
 
 $('select').on('change', function (event) {
