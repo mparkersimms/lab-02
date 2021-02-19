@@ -41,9 +41,10 @@ function renderWithMustache () {
 
 function renderDropdown() {
     console.log(HornsPicture.allHornsPics);
+    if ($('select:contains(Filter by Keyword)').length === 0) {
     $('select').append(`<option value = "template">Filter by Keyword</option>`);
     console.log($('option'));
-
+    }
     HornsPicture.allHornsPics.forEach(value => {
         console.log('test3');
         if ($(`select:contains(${value.keyword})`).length === 0) {

@@ -1,0 +1,35 @@
+
+body{
+    background-color: rgb(6, 169, 223);
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+h1 {
+    font-size: 70px;
+}
+div {
+    padding:10px;
+    margin:10px;
+    background-color: lightblue;
+    border: thin blue solid;
+    border-radius: 5px;;
+}
+ img {
+    border-radius: 10px;
+}
+
+p {
+    text-align: center;
+}
+
+h2, h3, p, img {
+    padding:5px;
+}
+
+
+
