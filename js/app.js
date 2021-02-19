@@ -25,11 +25,9 @@ function renderDropdown() {
 
     console.log(HornsPicture.allHornsPics);
     if ($('select:contains(Filter by Keyword)').length === 0) {
-    $('select').append(`<option value = "template">Filter by Keyword</option>`);
-    console.log($('option'));
-    }
+        $('select').append(`<option value = "template">Filter by Keyword</option>`);
 
-    $('select').append(`<option value = "template">Filter by Keyword</option>`);
+    }
 
     HornsPicture.allHornsPics.forEach(value => {
         if ($(`select:contains(${value.keyword})`).length === 0) {
