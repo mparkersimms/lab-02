@@ -1,0 +1,31 @@
+
+#photo-template {
+    display: none;
+}
+header {
+    
+    justify-content: space-evenly;
+    height: 150px;
+}
+h1 {
+    padding:20px;
+}
+select {
+    margin-left: 40px;
+}
+main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+div {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width: 250px;
+    flex-direction: column;
+}
+
+div img {
+    width:90%;
+}
